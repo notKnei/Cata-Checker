@@ -1,8 +1,9 @@
-# SkyBrokers-Projects
-My current projects for Sky | Brokers
+# Cata-Checker
+A node.js bot that I made of my own free will :D
 
-## Currently Working On
-- None
+## Recent Changes
+- Fixed Permissions and data
 
-## Maintaining
-- [Cata-Checker](https://github.com/notKnei/SkyBrokers-Projects/tree/main/Cata-Checker)
+
+
+All of my [Sky | Brokers](https://discord.gg/ssb) [Projects](https://github.com/notKnei/Sky-Brokers)
