@@ -7,7 +7,7 @@ module.exports = async( Database, Document ) => {
    */
   let r;
   try { 
-    r = await Database.deleteOne( Document );
+    r = await Database.deleteMany( Document );
   } catch ( e ) {
     throw e;
   } finally {
