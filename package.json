@@ -1,0 +1,19 @@
+{
+  "name": "CataChecker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "Cata-Checker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "discord.js": "^13.1.0",
+    "dotenv": "^10.0.0",
+    "mongodb": "^4.0.1",
+    "node-fetch": "^2.6.1"
+  }
+}
