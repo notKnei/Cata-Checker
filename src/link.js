@@ -21,12 +21,12 @@ module.exports = {
       if ( !Player ) return;
       let APIRes = await fetch( 'https://api.hypixel.net/player', `?key=${ process.env.Hypixel }&uuid=${ Player.id }`, m );
       if ( !APIRes ) return;
-      if ( !APIRes.player.socialMedia || !APIRes.player.socialMedia.links || !APIRes.player.socialMedia.links.DISCORD || APIRes.player.socialMedia.links.DISCORD !== m.author.tag ) return m.reply( `The existing discord account is either not given or doesn't match => \`${ m.author.tag }\`. Please double check ingame by following the steps below:\n\`\`\`scala\n1. Type "/profile" in the in-game chat and press enter\n2. Find the icon called "Social Media"\n3. Find the icon called "Discord"\n4. Go to the Discord app and click on your name on the bottom left to copy your Discord tag (eg: Knei#4714[capitalization matters])\n5. Go back in game and paste that copied tag in the chat\n6. If a book pops up, click "I understand"\`\`\`` )
+      if ( APIRes?.player?.socialMedia?.links?.DISCORD === undefined || APIRes.player.socialMedia.links.DISCORD !== m.author.tag ) return m.reply( `The existing discord account is either not given or doesn't match => \`${ m.author.tag }\`. Please double check ingame by following the steps below:\n\`\`\`scala\n1. Type "/profile" in the in-game chat and press enter\n2. Find the icon called "Social Media"\n3. Find the icon called "Discord"\n4. Go to the Discord app and click on your name on the bottom left to copy your Discord tag (eg: Knei#4714[capitalization matters])\n5. Go back in game and paste that copied tag in the chat\n6. If a book pops up, click "I understand"\`\`\`` )
       APIRes = await fetch( 'https://api.hypixel.net/skyblock/profiles', `?key=${ process.env.Hypixel }&uuid=${ Player.id }`, m );
       if ( !APIRes ) return;
       let profiles = {};
       for ( const p of APIRes.profiles ) { 
-        if ( p.members[ Player.id ].dungeons.dungeon_types.catacombs.experience ) {
+        if ( p.members[ Player.id ].dungeons?.dungeon_types?.catacombs?.experience ) {
           profiles[ p.profile_id ] = { ID: p.profile_id, CataExp: Math.round( p.members[ Player.id ].dungeons.dungeon_types.catacombs.experience ) || 0 };
         }
       }
