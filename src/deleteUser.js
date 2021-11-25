@@ -13,7 +13,7 @@ module.exports = {
       try {
         const userId = /\d+/g.test( a[ 0 ].replace( /\D+/g, '' ) ) ?  a[ 0 ].replace( /\D+/g, '' ) : false
         if ( !userId ) return m.reply( 'Please provide a valid userId or mention of a user in the server!' )
-        const Users = MongoClient.db( 'discord' ).collection( 'Alpha' );
+        const Users = Mongo.db( 'discord' ).collection( 'Alpha' );
         const Del = await Delete( Users, { _id: userId } )
         if ( Del.deletedCount === 1 ) return m.reply( `Successfully removed <@!${ userId }> [ ${ userId } ]` );
         if ( m.author.id === '168274283414421504' ) return client.users.fetch( ThatOneGuyToSendMyErrorsTo ).then( d => d.send( `${userId} errored while Dyno attempted to remove the user after resignation` ) )

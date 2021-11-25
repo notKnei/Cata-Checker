@@ -11,7 +11,7 @@ module.exports = {
       let msg, missing = [ ];
       try {
         msg = await m.channel.send( 'Searching...' );
-        const Users = MongoClient.db( 'discord' ).collection( 'Alpha' );
+        const Users = Mongo.db( 'discord' ).collection( 'Alpha' );
         const allCarriers = getRoleMembers( m, SkyBrokers.Junior ).concat( getRoleMembers( m, SkyBrokers.Senior ), getRoleMembers( m, SkyBrokers.Master ), getRoleMembers( m, SkyBrokers.Ultimate ) );
         for ( const carrier of allCarriers ) { 
           const Id = carrier[ 0 ]; 

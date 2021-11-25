@@ -14,7 +14,7 @@ module.exports = {
   async execute( m, a ) { 
     try {
       if ( !a[ 0 ] ) return m.reply( 'Please Provide A Username!' );
-      const Users = MongoClient.db( 'discord' ).collection( 'Alpha' );
+      const Users = Mongo.db( 'discord' ).collection( 'Alpha' );
       try { if ( await Find( Users, { _id : m.author.id } ) ) return m.reply( `You Are Already Linked to : ${ await Find( Users, { _id : m.author.id } ).then( r => r.ign ) }` );  } catch { }
       try { if ( await Find( Users, { ign: a[ 0 ] } ) )  return m.reply( `That Account Is Already Linked to Another User!|| If you think this is a mistake contact management or spam the shit out of Knei they will probably get to you in an hour or twenty ||` ); } catch { }
       const Player = await fetch( 'https://api.mojang.com/users/profiles/minecraft/', `${ a[ 0 ] }`, m );

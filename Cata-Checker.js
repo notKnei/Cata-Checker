@@ -5,8 +5,8 @@ global.client = new Client({ intents: [ Intents.FLAGS.GUILDS, Intents.FLAGS.GUIL
 // This stuff is just cursed because THIS ISNT POSSIBLE IN PYTHON WHY CAN YOU JUST RANDOMLY DELCARE A NEW KEY IN AN OBJECT oh right node.js is object oriented
 client.commands = new Collection()
 
-const MC = require('mongodb')
-global.MongoClient = new MC.MongoClient(process.env.MongoClient)
+const { MongoClient } = require('mongodb')
+global.Mongo = new MongoClient(process.env.MongoClient, { useNewUrlParser: true, useUnifiedTopology: true })
 
 const fs = require('fs')
 const cnfg = require('./config.json')
@@ -24,7 +24,7 @@ for (const f of fs.readdirSync('./src').filter(f => f.endsWith('.js'))) {
 
 client.once( 'ready', async () => {
   console.log( `Logged in as ${ client.user.tag }!` )
-  MongoClient.connect( )
+  Mongo.connect( )
   client.guilds.cache.get( cnfg.SkyBrokers.id ).members.fetch( )
   // This exists so when you get the member collection IT DOESN'T RETURN F****** Collection Map(0) {} #RIP-RAM Maybe? If this isn't what you want happening ask me for the alternative I probably also have that somewhere
   setInterval( async () => {
@@ -33,7 +33,7 @@ client.once( 'ready', async () => {
     const guild = await client.guilds.cache.get( cnfg.SkyBrokers.id )
     if ( !guild.available ) return console.log( "'Sky | Brokers' guild not advailable.\nThis could be due to an ongoing server outage. [ Check 'https://status.discord.com' for more information ]\nUpdate has been halted." );
     const Fetch = require( 'node-fetch' )
-    const MongoDB = await MongoClient.db( 'discord' ).collection( 'Alpha' )
+    const MongoDB = await Mongo.db( 'discord' ).collection( 'Alpha' )
     const mongoFind = require( './src/Mongo/find' )
     const mongoUpdate = require( './src/Mongo/update' )
     const expConvert = require( './src/Extras/ExpToLevel' )

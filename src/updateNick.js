@@ -8,7 +8,7 @@ module.exports = {
   description: "", 
   async execute( m, a ) {
     try {
-      const Users = MongoClient.db( 'discord' ).collection( 'Alpha' );
+      const Users = Mongo.db( 'discord' ).collection( 'Alpha' );
       const MDB = await Find( Users, { _id: m.author.id }  );
       if ( !MDB ) return m.reply( "You haven't linked to any accounts yet! Link to one by running `%link <IGN>`" )
       const MAPI = await fetch( 'https://api.mojang.com/user/profiles', `/${ MDB.uuid }/names`, m );

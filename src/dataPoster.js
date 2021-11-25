@@ -5,7 +5,7 @@ module.exports = {
   aliases: [ "add" ],
   description: "",
   async execute( m, a ) {
-    const Users = MongoClient.db( 'discord' ).collection( 'Alpha' );
+    const Users = Mongo.db( 'discord' ).collection( 'Alpha' );
     const lookFor = { _id: mentionToStringId( a[ 0 ] ) || m.author.id };
     let Player = await Find( Users, lookFor );
     if ( !Player ) {
