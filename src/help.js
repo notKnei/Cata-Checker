@@ -17,7 +17,8 @@ module.exports = {
       .setTimestamp()
     if ( m.member.roles.cache.some( r => r.id === SkyBrokers.Staff || r.id === SkyBrokers.Manager ) ) {
       emb.addFields( 
-        { name: "removeUser", value: `aliases:\`["ru"]\`\nCommand: \`${ prefix }removeUser <User Mention | ID>\`\nRemoves a single user from the database\nRoles Required: \`Staff, Carrier Manager\`\n||Not Used Often Because I made it so it silently ignores all users who dont have carrier roles||`, inline: false },
+        { name: "removeUser", value: `aliases:\`["ru"]\`\nCommand: \`${ prefix }removeUser <User Mention | ID>\`\nRemoves a single user from the database\nRoles Required: \`Staff, Carrier Manager\``, inline: true },
+        { name: 'forceLink', value: `aliases:\`["fl"]\`\nCommand: \`${ prefix }forceLink <User Mention | ID > <IGN>\`Lets staff/managers to link a uset to an IGN\nRoles Required: \`Staff, Carrier Manager\``, inline: true }
         //{ name: "massRemoveUsers", value: `aliases:\`["mru"]\`\nCommand:\`${ prefix }massRemoveUsers <Users Mention | Users IDs>\``, inline: true }, Not implemented cause havent seen anyone use it lol
       )
     }  

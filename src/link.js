@@ -11,11 +11,11 @@ module.exports = {
   name: "link",
   aliases: [ "l" ],
   description: "", 
-  async execute( m, a ) { 
+  async execute( m, a, e = 0 ) { 
     try {
       if ( !a[ 0 ] ) return m.reply( 'Please Provide A Username!' );
       const Users = Mongo.db( 'discord' ).collection( 'Alpha' );
-      try { if ( await Find( Users, { _id : m.author.id } ) ) return m.reply( `You Are Already Linked to : ${ await Find( Users, { _id : m.author.id } ).then( r => r.ign ) }` );  } catch { }
+      try { if ( await Find( Users, { _id : m.author.id } ) ) return m.reply( `${ !e ? 'You Are ' : `${m.author.username} is` } Already Linked to : ${ await Find( Users, { _id : m.author.id } ).then( r => r.ign ) }` );  } catch { }
       try { if ( await Find( Users, { ign: a[ 0 ] } ) )  return m.reply( `That Account Is Already Linked to Another User!|| If you think this is a mistake contact management or spam the shit out of Knei they will probably get to you in an hour or twenty ||` ); } catch { }
       const Player = await fetch( 'https://api.mojang.com/users/profiles/minecraft/', `${ a[ 0 ] }`, m );
       if ( !Player ) return;
@@ -35,7 +35,7 @@ module.exports = {
       //THANK GOD EXP DOESNT HIT THE 9'007'199'254'740'991 INT BARRIER FK YOU JAVASCRIPT I GET TO LIVE ANOTHER DAAAAAAAY
       const rep = await Insert( Users, { _id : m.author.id, ign : Player.name, uuid : Player.id, profile : profileId, Class: { name : dungeons.selected_dungeon_class, level : expToLevel( Math.round( dungeons.player_classes[ dungeons.selected_dungeon_class ].experience ) ) } } ).catch( e => { throw e } );
       if ( rep ) {
-        if ( m.member.roles.cache.some( r => r.id === SkyBrokers.Staff || r.id === SkyBrokers.Manager ) ) {
+        if ( m.member.roles.cache.some( r => r.id === SkyBrokers.Staff || r.id === SkyBrokers.Manager ) && !e ) {
         } else { 
           try { 
             m.member.setNickname( `[${ expToLevel( dungeons.dungeon_types.catacombs.experience ) }] ${ Player.name }` ); 
@@ -44,7 +44,7 @@ module.exports = {
             catch { }; 
           };
         };
-        return m.reply( `You Have Been Linked To ${ Player.name }!` );
+        return m.reply( `${ !e ? 'You Have' : `${m.author.username} Has` } Been Linked To ${ Player.name }!` );
       }
     } catch ( e ) {
       m.reply( new MessageEmbed( ).setTitle( 'Error' ).setDescription( `An error occured while linking and has been directly reported to <@${ ThatOneGuyToSendMyErrorsTo }>. Please try the command again in a moment. If this persisits please contact staff.` ).setColor( 0xff0000 ) )

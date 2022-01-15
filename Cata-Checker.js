@@ -17,9 +17,6 @@ const cnfg = require('./config.json')
 for (const f of fs.readdirSync('./src').filter(f => f.endsWith('.js'))) {
   const cmd = require(`./src/${f.replace('.js', '')}`)
   client.commands.set(cmd.name, cmd)
-  for (const a of cmd.aliases) {
-    client.commands.set(a, cmd)
-  }
 };
 
 client.once( 'ready', async () => {
@@ -56,9 +53,9 @@ client.once( 'ready', async () => {
         const newNickname = `[${ cataLevel }] ${ mongoData.ign }`
         if ( guildMember.nickname !== newNickname && cataLevel !== 50 && !guildMember.roles.cache.some( r => r.id === cnfg.SkyBrokers.Staff || r.id === cnfg.SkyBrokers.Manager || r.id === '881815766675107931' ) ) {
           guildMember.edit( { nick : newNickname } )
-          if ( cataLevel === 32 && guildMember.roles.cache.some( r => r.id === cnfg.SkyBrokers.Junior ) ) {
-            guildMember.roles.add( [ cnfg.SkyBrokers.Senior, ], 'Promoted from Junior to Senior' )
-            guildMember.roles.remove( [ cnfg.SkyBrokers.Junior, ], 'Promoted from Junior to Senior' )
+          if ( cataLevel >= 32 && guildMember.roles.cache.some( r => r.id === cnfg.SkyBrokers.Junior ) ) {
+            await guildMember.roles.add( cnfg.SkyBrokers.Senior, 'Promoted from Junior to Senior' )
+            await guildMember.roles.remove( cnfg.SkyBrokers.Junior, 'Promoted from Junior to Senior' )
           }
           counts.success.changed++
         } else { counts.success.unchanged++ }
@@ -87,14 +84,14 @@ client.on( 'messageCreate', ( m ) => {
 
   const args = m.content.slice( cnfg.prefix.length ).trim( ).split( / +/ );
   const cmd = args.shift( ).toLowerCase( );
-  if ( !client.commands.has( cmd ) ) return;
   try {
     /**
      * Base Parameters For All Commands
      * @m                | All given data from message Object
      * @args             | All arguments from message else just sme empty list probably
      */
-    client.commands.get( cmd ).execute( m, args );
+    const f = client.commands.get( cmd ) || client.commands.find( a => a.aliases && a.aliases.includes(cmd) ) || 0
+    if (f) f.execute( m, args )
   } catch ( e ) {
     client.users.cache.fetch( cnfg.ThatOneGuyToSendMyErrorsTo ).then( d => d.send( `\`\`\`js\n${ e.stack.toString( ) }\`\`\`` ) )
   }

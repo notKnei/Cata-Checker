@@ -5,6 +5,7 @@ module.exports = {
   aliases: [ "add" ],
   description: "",
   async execute( m, a ) {
+    if ( m.channel.parentId !== "843255528472969247" && m.channel.parentId !== "847903119177154630" ) return;
     const Users = Mongo.db( 'discord' ).collection( 'Alpha' );
     const lookFor = { _id: mentionToStringId( a[ 0 ] ) || m.author.id };
     let Player = await Find( Users, lookFor );
