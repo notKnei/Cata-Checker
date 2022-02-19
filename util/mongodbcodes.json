@@ -1,0 +1,7 @@
+{
+  "112": "Uh Oh, There was an issue when attempting to save the data. Please try again.",
+
+  "211": "Are you sure that person is in the database? This ID was not found.",
+  
+  "11000": "You are already in the database and somehow passed the first check (Congrats)! You do not need to link again."
+}

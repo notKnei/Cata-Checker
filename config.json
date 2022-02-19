@@ -1,17 +1,52 @@
 {
-  "prefix" : "%",
-  "ThatOneGuyToSendMyErrorsTo" : "418531067008647169",
-  "updateTime": { "minutes": 30, "hours": 0 },
-  "SkyBrokers" : {
-    "id" : "715801930877894706",
-    "Staff" : "719848521813196951",
-    "Manager" : "846825420993331203",
-    "Junior" : "843249027411607552",
-    "Senior" : "843248725190508564",
-    "Master" : "858362359570366484",
-    "Ultimate" : "858362408706506833"
+  "update": false,
+
+  "prefix": "t%",
+  "ThatOneGuyToSendMyErrorsTo": "418531067008647169",
+
+  "updateInterval": { "minutes": 30, "hours": 0 },
+
+  "mojang": {
+    "uuid": "https://api.mojang.com/users/profiles/minecraft/%s",
+    "nameHistory": "https://api.mojang.com/user/profiles/%s/names"
   },
-  "TestServer" : {
-    "Staff" : "798322145486438410"
-  }
+  "hypixel": {
+    "player": "https://api.hypixel.net/player?key=%s&uuid=%s",
+    "profile": "https://api.hypixel.net/skyblock/profile?key=%s&profile=%s",
+    "profiles": "https://api.hypixel.net/skyblock/profiles?key=%s&uuid=%s"
+  },
+
+  "SkyBrokers": {
+    "id": "715801930877894706",
+    "Staff": "719848521813196951",
+    "Manager": "846825420993331203",
+    "Junior": "843249027411607552",
+    "Senior": "843248725190508564",
+    "Master": "858362359570366484",
+    "Ultimate": "858362408706506833"
+  },
+  
+  "unSorted.__comment__": "I relisted the role ids so many times ;-; Should I find a way around this or leave it...",
+
+  "required": [
+    "719848521813196951",
+    "846825420993331203",
+    "843249027411607552",
+    "843248725190508564",
+    "858362359570366484",
+    "858362408706506833",
+    "870304981171990528",
+    "859453104913907754",
+    "870304636756717600",
+    "870304741849169921"
+  ],
+  "required.__comment__": "Staff, Carrier Manager, Junior, Senior, Master, Ultimate, Tara, Void, Rev, Sven",
+
+  "ignore": [
+    "719848521813196951",
+    "846825420993331203",
+    "881815766675107931",
+    "891059441867296819"
+  ],
+  "ignore.__comment__": "Staff, Carrier Manager, Cata 50 No-Life, Event Manager"
 }

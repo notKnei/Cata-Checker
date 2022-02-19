@@ -1,19 +1,26 @@
 {
-  "name": "CataChecker",
-  "version": "1.0.0",
+  "name": "cata-checker",
+  "version": "2.0.0",
   "description": "",
-  "main": "Cata-Checker.js",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "npm run lint",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/node-fetch": "^2.5.12",
     "axios": "^0.21.1",
-    "discord.js": "^13.1.0",
-    "dotenv": "^10.0.0",
+    "discord.js": "^13.6.0",
+    "dotenv": "^11.0.0",
     "mongodb": "^4.0.1",
-    "node-fetch": "^2.6.1"
+    "node-fetch": "^2.6.6"
+  },
+  "devDependencies": {
+    "eslint": "^8.7.0",
+    "eslint-config-google": "^0.14.0"
   }
 }
