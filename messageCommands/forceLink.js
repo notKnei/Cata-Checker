@@ -2,7 +2,7 @@ const {Message} = require('discord.js'),
   {SkyBrokers} = require('../config.json'),
   {execute: linkExecute} = require('./link'),
   MessageCommand = require('../templates/MessageCommand');
-
+ 
 module.exports = new MessageCommand({
   name: 'forcelink', 
   description: 'Forcefully link an User to a Minecraft account',

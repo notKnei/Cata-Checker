@@ -4,7 +4,7 @@ const { Message, MessageEmbed } = require('discord.js'),
   experienceConvert = require('../util/expConvert'),
   { mojang: {uuid}, hypixel, required, ignore } = require('../config.json'),
   MessageCommand = require('../templates/MessageCommand');
-
+ 
 module.exports = new MessageCommand({
   name: 'link',
   description: 'Links you to your Minecraft account for carrying purposes.',

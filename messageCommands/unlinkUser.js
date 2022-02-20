@@ -1,7 +1,7 @@
 const {Message, MessageEmbed} = require('discord.js'), 
   {SkyBrokers} = require('../config.json'),
   MessageCommand = require('../templates/MessageCommand');
-
+ 
 module.exports = new MessageCommand({
   name: 'removeuser',
   description: 'Removes an User from the database.',

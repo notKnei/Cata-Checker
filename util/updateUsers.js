@@ -21,7 +21,7 @@ function updateUserData() {
       fetchUsers(guild, config.SkyBrokers.Master),
       fetchUsers(guild, config.SkyBrokers.Ultimate),
   );
-
+ 
   members.forEach( async (member) => {
     const resultingDocument = await carrierDatabase.findOne( { _id: member.id } );
     if ( typeof resultingDocument === null ) return;
