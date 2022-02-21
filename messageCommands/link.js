@@ -39,7 +39,7 @@ module.exports = new MessageCommand({
       return message.reply( { embeds: [ Mojang ] } );
     }
 
-    let Hypixel = await getData( hypixel.player, [ process.env.hypixel, Mojang.id ] );
+    let Hypixel = await getData( hypixel.player, [ process.env.Hypixel, Mojang.id ] );
 
     if ( Hypixel instanceof MessageEmbed ) {
       return message.reply( { embeds: [ Hypixel ] } );
@@ -50,7 +50,7 @@ module.exports = new MessageCommand({
       return message.reply( `The existing linked discord account is either not given or doesn't match => \`${message.author.tag}\`. Please double check ingame by following the steps below:\n\`\`\`scala\n1. Type "/profile" in the in-game chat and press enter\n2. Find the icon called "Social Media"\n3. Find the icon called "Discord"\n4. Go to the Discord app and click on your name on the bottom left to copy your Discord tag (eg: Knei#4714[capitalization matters])\n5. Go back in game and paste that copied tag in the chat\n6. If a book pops up, click "I understand"\`\`\`` );
     }
 
-    Hypixel = await getData( hypixel.profiles, [ process.env.hypixel, Mojang.id ] );
+    Hypixel = await getData( hypixel.profiles, [ process.env.Hypixel, Mojang.id ] );
 
     if ( Hypixel instanceof MessageEmbed ) {
       return message.reply( { embeds: [ Hypixel ] } );

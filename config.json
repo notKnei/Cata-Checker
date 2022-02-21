@@ -1,7 +1,7 @@
 {
   "update": false,
 
-  "prefix": "t%",
+  "prefix": "%",
   "ThatOneGuyToSendMyErrorsTo": "418531067008647169",
 
   "updateInterval": { "minutes": 30, "hours": 0 },

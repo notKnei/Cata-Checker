@@ -26,10 +26,10 @@ module.exports = new MessageCommand({
 
     if ( deleteResult.acknowledged && deleteResult.deletedCount > 0 ) {
       embed.setTitle( 'Remove User Result: Success!' ).setDescription( `User: <@${args[0]}> [${args[0]}] was successfully removed from the databse.` ).setColor( 0x57F287 );
-      return embed;
+      return message.reply({embeds: [embed] });
     } else {
-      embed.setTitle( 'Remove User Result: Error!' ).setDescription( `An issue occured while removing User: <@${args[0]}> [${args[0]}]` ).setColor( 0xED4245 );
-      return embed;
+      embed.setTitle( 'Remove User Result: Error!' ).setDescription( `An issue occured while removing User: <@${args[0]}> [${args[0]}]\nThis most likely because they are not in the database` ).setColor( 0xED4245 );
+      return message.reply({embeds: [embed] });
     }
   }
 })
