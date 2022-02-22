@@ -48,7 +48,7 @@ function updateUserData() {
     if ( typeof classType === undefined ) return;
 
     if ( classType !== resultingDocument.Class.name || classLevel !== resultingDocument.Class.level ) {
-      carrierDatabase.updateOne( { _id: member.id }, { Class: { name: classType, level: classLevel } } );
+      carrierDatabase.updateOne( { _id: member.id }, { $set: { Class: { name: classType, level: classLevel } } } );
     }
   });
 }
