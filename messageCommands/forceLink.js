@@ -15,7 +15,7 @@ module.exports = new MessageCommand({
    * @returns I am out here manipulating stuff lol ( line 26-27 )
    */
   async execute(message, args) {
-    if ( message.member.roles.some( role => role.id === SkyBrokers.Staff || role.id === SkyBrokers.Manager ) ) return;
+    if ( !message.member.roles.cache.some( role => role.id === SkyBrokers.Staff || role.id === SkyBrokers.Manager ) ) return;
 
     if ( !args.length >= 2 ) {
       return message.reply('Missing arguments! Command should be run as `%forcelink <User> <IGN>`')
