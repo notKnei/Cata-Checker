@@ -21,7 +21,7 @@ module.exports = new MessageCommand({
       return message.reply('Missing arguments! Command should be run as `%forcelink <User> <IGN>`')
     }
 
-    const userID = args[0].shift().replace( /\D+/g, '' );
+    const userID = args.shift().replace( /\D+/g, '' );
 
     message.member = await message.guild.members.fetch(userID);
     message.author = await discord.client.users.fetch(userID);
