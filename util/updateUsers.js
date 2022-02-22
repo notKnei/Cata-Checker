@@ -34,13 +34,12 @@ function updateUserData() {
       newNickname = `[${ cataLevel }] ${ resultingDocument.ign }`;
 
     // ? Decide if member name and data needs to be changed
-    if ( member.nickname !== newNickname && member.roles.cache.some( (r) => !(r.id in config.ignore) ) ) {
+    if ( member.nickname !== newNickname && !member.roles.cache.some( (r) => config.ignore.includes(r.id) ) ) {
       await member.setNickname( newNickname, 'Updated Catacombs Level' );
-
-      if ( cataLevel === 32 && member.roles.cache.some( (r) => r.id === config.SkyBrokers.Junior ) ) {
-        await member.roles.remove( config.SkyBrokers.Junior, 'Promotion: Junior => Senior' );
-        await member.roles.add( config.SkyBrokers.Senior, 'Promotion: Junior => Senior' );
-      }
+    }
+    if ( cataLevel === 32 && member.roles.cache.some( (r) => r.id === config.SkyBrokers.Junior ) ) {
+      await member.roles.remove( config.SkyBrokers.Junior, 'Promotion: Junior => Senior' );
+      await member.roles.add( config.SkyBrokers.Senior, 'Promotion: Junior => Senior' );
     }
 
     // ? Decide if class data needs to be changed
