@@ -29,7 +29,7 @@ module.exports = new MessageCommand({
       if ( member.roles.cache.some( (role) => ignore.includes( role.id ) ) ) continue;
       const UserDocument = await CursorInstance.findOne( { _id: memberID } );
       if ( UserDocument ) continue;
-      Unlinked.push( `<@${memberID}> [${memberID}]\n` );
+      Unlinked.push( `<@${memberID}> [${memberID}]` );
     }
 
     const Embed = new MessageEmbed({
@@ -39,7 +39,7 @@ module.exports = new MessageCommand({
     if ( Unlinked.length == 0 ) {
       Embed.setColor( 0x57F287 ).setDescription( 'All Carriers are linked!' );
     } else if ( Unlinked.length > 0 ) {
-      Embed.setColor( 0xED4245 ).setDescription( `Some Carriers are not linked!\n**Total unlinked**: ${Unlinked.length}` ).addField( 'Unlinked Carriers', Unlinked.join() );
+      Embed.setColor( 0xED4245 ).setDescription( `Some Carriers are not linked!\n**Total unlinked**: ${Unlinked.length}` ).addField( 'Unlinked Carriers', Unlinked.join(',\n') );
     }
 
     return Message.edit( { embeds: [ Embed ] } );
